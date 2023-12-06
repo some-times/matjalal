@@ -24,15 +24,15 @@ class Restaurants(db.Model):
 with app.app_context():
     db.create_all()
 
-@app.route('/')
+@app.route('/') #리스트 출력
 def index():
     restaurant_list = Restaurants.query.all()
 
     return render_template('restruant.html', restaurant_list = restaurant_list)
 
-@app.route('/api/foodie', methods=['POST'])
+@app.route('/api/foodie', methods=['POST']) #식당 추가
 def foodie_create():
-    if request.method == 'POST': 
+    try: 
         userid_receive = request.form['userid']
         username_receive = request.form['username']
         shopname_receive = request.form['shopname']
@@ -40,17 +40,19 @@ def foodie_create():
         style_receive = request.form['style']
         review_receive = request.form['review']
         img_receive = request.form['img']
-        
+    except SQLAlchemyError as e:
+        flash("오류가 발생했습니다.")
+
     restaurant = Restaurants(userid = userid_receive, username = username_receive, shopname = shopname_receive, 
                             address =  address_receive, style  = style_receive, review = review_receive, img = img_receive)
     db.session.add(restaurant)
     db.session.commit()
     
     return render_template('restruant.html')
-
     #return redirect(url_for('index.html'))
 
-@app.route('/api/foodie/', methods=['POST'])
+@app.route('/api/foodie/', methods=['POST']) 
+#@app.route('/api/foodie/<id>', methods=['post']) 삭제
 def foodie_delete():
     #userid = session['userid']
     id = 1
