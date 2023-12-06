@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import os
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import SQLAlchemyError
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] =\
         'sqlite:///' + os.path.join(basedir, 'database.db')
+app.config["SECRET_KEY"] = "ABCD"
 
 db = SQLAlchemy(app)
 
@@ -22,42 +24,50 @@ class Restaurants(db.Model):
 with app.app_context():
     db.create_all()
 
-@app.route('/')
+@app.route('/') #리스트 출력
 def index():
     restaurant_list = Restaurants.query.all()
 
-    return render_template('index.html', restaurant_list = restaurant_list)
+    return render_template('restraunt.html', restaurant_list = restaurant_list)
 
-@app.route('/api/foodie', methods=['POST'])
+@app.route('/api/foodie', methods=['POST']) #식당 추가
 def foodie_create():
-    userid_receive = request.args.get("userid")
-    username_receive = request.args.get("username")
-    shopname_receive = request.args.get("shopname")
-    address_receive = request.args.get("address")
-    style_receive = request.args.get("style")
-    review_receive = request.args.get("review")
-    img_receive = request.args.get("img")
+    try: 
+        userid_receive = request.form['userid']
+        username_receive = request.form['username']
+        shopname_receive = request.form['shopname']
+        address_receive = request.form['address']
+        style_receive = request.form['style']
+        review_receive = request.form['review']
+        img_receive = request.form['img']
+    except SQLAlchemyError as e:
+        flash("오류가 발생했습니다.")
 
-    print(userid_receive, username_receive, shopname_receive, address_receive,
-            style_receive, review_receive, img_receive)
-    # restaurant = Restaurants(userid = userid_receive, username = username_receive, shopname = shopname_receive, 
-    #                         address =  address_receive, style  = style_receive, review = review_receive, img = img_receive)
-    # db.session.add(restaurant)
-    # db.session.commit()
-    return render_template('index.html')
-
+    restaurant = Restaurants(userid = userid_receive, username = username_receive, shopname = shopname_receive, 
+                            address =  address_receive, style  = style_receive, review = review_receive, img = img_receive)
+    db.session.add(restaurant)
+    db.session.commit()
+    
+    return render_template('restraunt.html')
     #return redirect(url_for('index.html'))
 
-@app.route('/api/foodie', methods=['DELETE'])
+@app.route('/api/foodie/', methods=['POST']) 
+#@app.route('/api/foodie/<id>', methods=['post']) 삭제
 def foodie_delete():
-    userid_receive = request.args.get("userid")
-    id_receive = request.args.get("id")
+    #userid = session['userid']
+    id = 1
+    userid = 'test'
 
-    delete_restraurant = Restaurants.query.filter_by(userid = userid_receive, id = id_receive).first()
-    db.session.delete(delete_restraurant)
-    db.session.commit()
+    try:
+        delete_restraurant = Restaurants.query.filter_by(userid = userid, id = id).first() 
+        db.session.delete(delete_restraurant)
+        db.session.commit()
+        flash("삭제되었습니다 .")
 
-    return redirect(url_for('index.html'))
+    except SQLAlchemyError as e:
+        flash("권한이 없습니다.")
+
+    return render_template('restraunt.html')
 
 # @app.route('/foodie/<query>')
 # def search(query):
