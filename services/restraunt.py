@@ -50,7 +50,7 @@ def foodie_create():
         flash("오류가 발생했습니다.")
 
     restaurant = Restaurants(userid = userid_receive, username = username_receive, shopname = shopname_receive, 
-                            address =  address_receive, style  = style_receive, review = review_receive, img = img_receive)
+                            address =  address_receive, style  = style_receive, review = review_receive, img = img_name)
     db.session.add(restaurant)
     db.session.commit()
     
