@@ -34,6 +34,11 @@
 </head>
 
 <body class="fixed-position">
+    {% if msg %}
+    <script>
+        alert('{{ msg }}');
+    </script>
+    {% endif %}
     <div class="signin">
         <div class="signin__warp">
             <div class="signin__content">
@@ -61,18 +66,18 @@
                                     <img src="{{ url_for('static', filename='img/logo4.png') }}" />
                                 </div>
                                 <div class="divide"></div>
-                                <form method="post" action="{{ url_for('member') }}">
-                                    <input type="text" placeholder="User Name*" name="username">
-                                    <input type="text" placeholder="ID*" name="id">
-                                    <input type="password" placeholder="Password" name="password">
-                                    <input type="password" placeholder="Confirm Password" name="password_confirmation">
+                                <form method="post" action="{{ url_for('member') }}" onsubmit="return validateJoin()">
+                                    <input type="text" placeholder="User Name*" name="username" id="username">
+                                    <input type="text" placeholder="ID*" name="id" id="userId" onblur="checkDuplicateId()">
+                                    <input type="password" placeholder="Password" name="password" id="userPassword">
+                                    <input type="password" placeholder="Confirm Password" name="password_confirmation" id="confirmPassword">
                                     <label for="sign-agree-check">
                                         I agree to the terms & conditions
                                         <input type="checkbox" id="sign-agree-check">
                                         <span class="checkmark"></span>
                                     </label>
                                     <button type="submit" class="site-btn">Sign Up</button>
-                                    <button type="submit" class="site-btn"><a href="main.html"
+                                    <button class="site-btn"><a href="main.html"
                                             style="display: inline-block; color: #fff;">Back</a></button>
                                 </form>
                             </div>
@@ -82,9 +87,10 @@
                                 <div class="signin__form__signup__social">
                                     <img src="{{ url_for('static', filename='img/logo4.png') }}" />
                                 </div>
-                                <form method="post" action="{{ url_for('login') }}" onsubmit="return validate()">
+                                <form method="post" action="{{ url_for('login') }}" onsubmit="return validateLogin()">
                                     <input type="text" placeholder="ID*" name="id" id="id">
                                     <input type="password" placeholder="Password" name="password" id="password">
+                                    <div id="passwordMismatch" style="color: red; display: none;">아이디 또는 비밀번호가 올바르지 않습니다.</div>    
                                     <button type="submit" class="site-btn">Sign In</button>
                                     <button class="site-btn"><a href="main.html"
                                             style="display: inline-block; color: #fff;">Back</a></button>
@@ -97,24 +103,7 @@
         </div>
     </div>
     <!-- Search End -->
-    <!-- JS -->
-    <script>
-        // 유효성 검사
-        function validate() {
-
-            let idInput = document.getElementById('id')
-            let passwordInput = document.getElementById('password')
-
-            let id = idInput.value.trim()
-            let password = passwordInput.value.trim()
-
-            if (id === '' || password === '') {
-                alert('아이디또는 비밀번호를 입력해주세요')
-                return false
-            } 
-            return true
-        }
-    </script>
+    
 
     <!-- Js Plugins -->
     <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>

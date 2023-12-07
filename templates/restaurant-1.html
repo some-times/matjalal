@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="static/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="static/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="static/css/style.css" type="text/css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            checkLoginStatus();
+        });
+    </script>
 </head>
 
 <body>
@@ -98,8 +103,12 @@
                     <div class="col-lg-8 col-md-10 order-md-2 order-3">
                         <nav class="header__menu">
                             <ul>
-                                <li><a href="./modal.html">Login/Sign up</a></li>
-                                <li><a href="./contact.html">user_Id</a></li>
+                                <li class="active"><a href="./index_test.html">Home</a></li>
+                                <li id="login-signup"><a href="sign.html">LOGIN / SIGN UP</a></li>
+                                <li id="logout" style="display: none;"><a onclick="logout()">LOGOUT</a></li>
+                                <li>{% if user_name %}
+                                    <p class="header__menu_p" style="margin: 0;">환영합니다 {{ user_name }}님</p>
+                                    {% endif %}</li>
                             </ul>
                         </nav>
                     </div>
@@ -125,27 +134,29 @@
                 <div class="row">
                 </div>
                 <div class="row">
-                    <div class="contact__form">
-                        <div class="contact__form__title d-flex justify-content-center align-items-center flex-column">
-                            <h2>음식점 정보 입력란</h2>
-                            <p>상호명, 주소, 종류, 설명 및 평가를 입력해 주세요.</p>
-                        </div>
-                        <form action="{{ url_for('foodie_create')}}" method="post" enctype=multipart/form-data>
-                            <input type="text" name="shopname" placeholder="상호명">
-                            <input type="text" name="address" placeholder="주소">
-                            <input type="text" name="style" placeholder="종류 ex&#41 일식, 양식, 한식">
-                            <div class="filebox">
-                                <input class="upload-name" value="첨부파일" placeholder="첨부파일">
-                                <label for="file">파일찾기</label>
-                                <input type="file" id="file" name="img">
+                        <div class="contact__form">
+                            <div class="contact__form__title d-flex justify-content-center align-items-center flex-column">
+                                <h2>음식점 정보 입력란</h2>
+                                <p>상호명, 주소, 종류, 설명 및 평가를 입력해 주세요.</p>
                             </div>
-                            <textarea name="review" placeholder="설명 및 평가"></textarea>
-                            <button type="submit" class="site-btn">등록</button>
-                        </form>
+                            <form action="{{ url_for('foodie_create')}}" method="post" enctype=multipart/form-data>
+                                <input type="hidden" name="userid" value="test">
+                                <input type="hidden" name="username" value="Hoon">
+                                <input type="text" name="shopname" placeholder="상호명">
+                                <input type="text" name="address" placeholder="주소">
+                                <input type="text" name="style" placeholder="종류 ex&#41 일식, 양식, 한식">
+                                <div class="filebox">
+                                    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                                    <label for="file">파일찾기</label> 
+                                    <input type="file" id="file" name="img">
+                                </div>
+                                <textarea name="review" placeholder="설명 및 평가"></textarea>
+                                <button type="submit" class="site-btn">등록</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
     <!-- Contact Section End -->
@@ -160,13 +171,38 @@
         </div>
     </div>
     <!-- Search End -->
-    
+    <!-- Js -->
+    <script>
+        // 로그아웃 시 버튼 변경
+        function logout() {
+            fetch('/api/logout', {
+                method: 'POST',
+                credentials: 'include',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message == 'success') {
+                        sessionStorage.removeItem('user_id')
+
+                        document.getElementById('login-signup').style.display = 'inline-block'
+                        document.getElementById('logout').style.display = 'none'
+                        window.location.href = '/';
+                    } else {
+                        console.log("fail")
+                    }
+                })
+                .catch(error => {
+                    console.log('Error:', error)
+                })
+        }
+    </script>
     <!-- Js Plugins -->
     <script src="static/js/jquery-3.3.1.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/jquery.slicknav.js"></script>
     <script src="static/js/owl.carousel.min.js"></script>
     <script src="static/js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
 </body>
 
 </html>
