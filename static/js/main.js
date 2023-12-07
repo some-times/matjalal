@@ -16,9 +16,7 @@
     --------------------*/
     $(window).on('load', function () {
         $(".loader").fadeOut();
-<<<<<<< HEAD
-        $("#preloder").delay(200).fadeOut("slow");
-=======
+
         $("#preloder").delay(100).fadeOut("slow");
 >>>>>>> main
     });
@@ -78,8 +76,6 @@
         autoHeight: false,
         autoplay: true
     });
-
-<<<<<<< HEAD
 })(jQuery);
 =======
 })(jQuery);
@@ -88,4 +84,3 @@ $("#file").on('change',function(){
     var fileName = $("#file").val().split('.')[0];
     $(".upload-name").val(fileName);
 });
->>>>>>> main

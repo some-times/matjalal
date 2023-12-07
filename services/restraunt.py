@@ -28,7 +28,11 @@ with app.app_context():
 def index():
     restaurant_list = Restaurants.query.all()
 
-    return render_template('restruant.html', restaurant_list = restaurant_list)
+    return render_template('main.html', restaurant_list = restaurant_list)
+
+@app.route('/restraunt.html', methods=['POST', 'GET'])
+def foodie_move():
+    return render_template('restraunt-1.html')
 
 @app.route('/api/foodie', methods=['POST']) #식당 추가
 def foodie_create():
@@ -39,7 +43,9 @@ def foodie_create():
         address_receive = request.form['address']
         style_receive = request.form['style']
         review_receive = request.form['review']
-        img_receive = request.form['img']
+        uploaded_file = request.files['img']
+        img_name = uploaded_file.filename
+        uploaded_file.save("./static/upload/"+img_name+".jpeg")
     except SQLAlchemyError as e:
         flash("오류가 발생했습니다.")
 
@@ -48,7 +54,7 @@ def foodie_create():
     db.session.add(restaurant)
     db.session.commit()
     
-    return render_template('restruant.html')
+    return redirect(url_for('index'))
     #return redirect(url_for('index.html'))
 
 @app.route('/api/foodie/', methods=['POST']) 
