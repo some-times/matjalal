@@ -116,7 +116,9 @@ def member():
             flash('이미 존재하는 아이디입니다.', 'error')
             return redirect(url_for('sign'))
 
-        new_user = Users(userid=id, username=username, password=generate_password_hash(password, method='sha256'))
+        # 비밀번호를 해시하여 데이터베이스에 저장
+        hashed_password = generate_password_hash(password, method='sha256')
+        new_user = Users(userid=id, username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
