@@ -127,9 +127,5 @@ def member():
 
     return render_template('index')
 
-@app.route('/restraunt.html', methods=['POST', 'GET'])
-def foodie_move():
-    return render_template('restraunt-1.html')
-
 if __name__ == '__main__':
     app.run(debug=True) 
