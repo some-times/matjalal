@@ -41,7 +41,7 @@
                         <nav class="header__menu">
                             <ul>
                                 <li class="none"><a href="{{ url_for('index') }}">Home</a></li>
-                                <li id="login-signup"><a href="sign.html">LOGIN / SIGN UP</a></li>
+                                <li id="login-signup"><a href="{{ url_for('sign')}}">LOGIN / SIGN UP</a></li>
                                 <li id="logout" style="display: none;"><a onclick="logout()">LOGOUT</a></li>
                                 <li>{% if user_name %}
                                     <p class="header__menu_p" style="margin: 0;">환영합니다 {{ user_name }}님</p>
@@ -113,13 +113,38 @@
 
     <!-- 원본 템플릿에서 푸터 섹션을 포함 -->
     <!-- 푸터 섹션 코드를 제공된 코드에서 복사해서 붙여넣을 수 있습니다 -->
+    <script>
+        // 로그아웃 시 버튼 변경
+        function logout() {
+            fetch('/api/logout', {
+                method: 'POST',
+                credentials: 'include',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message == 'success') {
+                        sessionStorage.removeItem('user_id')
 
+                        document.getElementById('login-signup').style.display = 'inline-block'
+                        document.getElementById('logout').style.display = 'none'
+                        window.location.href = '/';
+                    } else {
+                        console.log("실패패패패ㅐ패패")
+                    }
+                })
+                .catch(error => {
+                    console.log('Error:', error)
+                })
+        }
+    </script>
     <!-- Js 플러그인 -->
     <script src="static/js/jquery-3.3.1.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/jquery.slicknav.js"></script>
     <script src="static/js/owl.carousel.min.js"></script>
     <script src="static/js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+
 </body>
 
 </html>
