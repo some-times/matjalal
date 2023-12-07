@@ -61,8 +61,13 @@ def search():
 @app.route('/restarant.html', methods=['POST', 'GET']) # 식당 추가 페이지 이동
 def foodie_move():
     if 'user_id' in session:      
-        return render_template('restarant-1.html')
-    
+        username = None
+        if 'user_id' in session:
+            user = Users.query.get(session['user_id'])
+            if user:
+                username = user.username
+        return render_template('restarant-1.html', user_name = username)
+
     alert_msg = "로그인이 필요합니다."
 
     return render_template('sign.html', msg = alert_msg)
@@ -247,14 +252,20 @@ def check_password():
         return jsonify({'isValid': True})
     else:
         return jsonify({'isValid': False}) 
-       
+
 
 # 상세페이지 이동
 @app.route('/restarant/<int:restarant_id>', methods=['GET'])
 def restarant_detail(restarant_id):
     # restarant_id에 해당하는 레스토랑 정보를 데이터베이스에서 가져와서 상세 페이지에 전달
     restarant = Restarants.query.get_or_404(restarant_id)
-    return render_template('restarant_detail.html', restarant=restarant)
+    if 'user_id' in session:      
+        username = None
+        if 'user_id' in session:
+            user = Users.query.get(session['user_id'])
+            if user:
+                username = user.username
+    return render_template('restarant_detail.html', restarant=restarant, user_name = username)
 
 if __name__ == '__main__':
     app.run(debug=True)
