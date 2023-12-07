@@ -24,15 +24,15 @@ class Restaurants(db.Model):
 with app.app_context():
     db.create_all()
 
-@app.route('/home')
-def home():
-    return render_template('main.html')
-
 @app.route('/') #리스트 출력
 def index():
     restaurant_list = Restaurants.query.all()
 
-    return render_template('restraunt-1.html', restaurant_list = restaurant_list)
+    return render_template('main.html', restaurant_list = restaurant_list)
+
+@app.route('/restraunt.html', methods=['POST', 'GET'])
+def foodie_move():
+    return render_template('restraunt-1.html')
 
 @app.route('/api/foodie', methods=['POST']) #식당 추가
 def foodie_create():
@@ -46,7 +46,6 @@ def foodie_create():
         uploaded_file = request.files['img']
         img_name = uploaded_file.filename
         uploaded_file.save("./static/upload/"+img_name+".jpeg")
-
     except SQLAlchemyError as e:
         flash("오류가 발생했습니다.")
 
@@ -55,7 +54,6 @@ def foodie_create():
     db.session.add(restaurant)
     db.session.commit()
     
-    #return render_template('restraunt.html')
     return redirect(url_for('index'))
 
 @app.route('/api/foodie/', methods=['POST']) 
@@ -74,7 +72,7 @@ def foodie_delete():
     except SQLAlchemyError as e:
         flash("권한이 없습니다.")
 
-    return render_template('restraunt.html')
+    return render_template('restruant.html')
 
 # @app.route('/foodie/<query>')
 # def search(query):

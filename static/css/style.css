@@ -549,7 +549,9 @@ ol {
 	padding: 57px 0 56px;
 	text-align: center;
 }
-
+.header_register_btn{
+	text-align: center;
+}
 .header__logo {
 	padding: 50px 0 40px;
 	text-align: center;
@@ -1220,8 +1222,9 @@ ol {
 
 .categories__post__item__text p {
 	font-size: 14px;
-	line-height: 24px;
-	margin-bottom: 21px;
+	line-height: 14px;
+	display: inline-block;
+	margin: 0;
 }
 
 .categories__post__item__small {
@@ -2640,6 +2643,28 @@ ol {
 	color: #444444;
 }
 
+.contact__form form textarea {
+	height: 180px;
+	width: 100%;
+	background: transparent;
+	border: 1px solid #e1e1e1;
+	font-size: 14px;
+	color: #444444;
+	padding-top: 12px;
+	padding-left: 20px;
+	margin-bottom: 14px;
+	resize: none;
+}
+
+.contact__form form textarea:last-child {
+	color: #444444;
+}
+
+.contact__form form button {
+	width: 100%;
+	background-color: #f4952f;
+}
+
 .filebox{
 	display: flex;
 	justify-content: space-between;
@@ -2672,28 +2697,6 @@ ol {
     overflow: hidden;
     border: 0;
 }
-.contact__form form textarea {
-	height: 180px;
-	width: 100%;
-	background: transparent;
-	border: 1px solid #e1e1e1;
-	font-size: 14px;
-	color: #444444;
-	padding-top: 12px;
-	padding-left: 20px;
-	margin-bottom: 14px;
-	resize: none;
-}
-
-.contact__form form textarea:last-child {
-	color: #444444;
-}
-
-.contact__form form button {
-	background-color: #f4952f;
-	width: 100%;
-}
-
 /*---------------------
   Sign In
 -----------------------*/

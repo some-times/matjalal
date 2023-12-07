@@ -87,27 +87,43 @@ def logout():
     session.pop('user_id', None)
     return jsonify({'message': 'success'})
 
-# 회원가입
-@app.route('/api/member', methods=['GET', 'POST'])
+# 캐시 없음 헤더 설정
+@app.after_request
+def add_no_cache_header(response):
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
+@app.route('/api/member', methods=['POST'])
 def member():
     if request.method == 'POST':
-        userid = request.form['id']
+        id = request.form['id']
         username = request.form['username']
         password = request.form['password']
+        password_confirmation = request.form['password_confirmation']
 
-        # 비밀번호 해시화
-        # hashed_password = generate_password_hash(password, method='sha256')
+        # 서버 측 유효성 검사
+        if not id or not username or not password or not password_confirmation:
+            flash('모든 필드를 채워주세요.', 'error')
+            return redirect(url_for('sign'))
 
-        # 새로운 사용자 생성
-        new_user = Users(userid=userid, username=username, password=password)
+        if password != password_confirmation:
+            flash('비밀번호와 비밀번호 확인이 일치하지 않습니다.', 'error')
+            return redirect(url_for('sign'))
 
-        # 데이터베이스에 추가
+        if Users.query.filter_by(userid=id).first():
+            flash('이미 존재하는 아이디입니다.', 'error')
+            return redirect(url_for('sign'))
+
+        new_user = Users(userid=id, username=username, password=generate_password_hash(password, method='sha256'))
         db.session.add(new_user)
         db.session.commit()
 
-        flash('회원가입 성공. 로그인하세요!', 'success')
-        return redirect(url_for('index'))
+        flash('회원가입 성공! 로그인해주세요.', 'success')
+        return redirect(url_for('sign'))
 
-    return render_template('main.html')
+    return render_template('sign.html')
+
 if __name__ == '__main__':
     app.run(debug=True) 
