@@ -35,56 +35,7 @@
     </div>
 
     <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="./index.html"><img src="{{ url_for('static', filename='img/humberger/humberger-logo.png') }}"
-                    alt=""></a>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li><a href="./index.html">홈</a></li>
-                <li><a href="#">Recipes</a></li>
-                <li><a href="#">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
-
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="humberger__menu__about">
-            <div class="humberger__menu__title sidebar__item__title">
-                <h6>About me</h6>
-            </div>
-            <img src="{{ url_for('static', filename='img/humberger/humberger-about.jpg') }}" alt="">
-            <h6>Hi every one! I,m Lena Mollein.</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.</p>
-            <div class="humberger__menu__about__social sidebar__item__follow__links">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-envelope-o"></i></a>
-            </div>
-        </div>
-        <div class="humberger__menu__subscribe">
-            <div class="humberger__menu__title sidebar__item__title">
-                <h6>Subscribe</h6>
-            </div>
-            <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
-            <form action="#">
-                <input type="text" class="email-input" placeholder="Your email">
-                <label for="agree-check">
-                    I agree to the terms & conditions
-                    <input type="checkbox" id="agree-check">
-                    <span class="checkmark"></span>
-                </label>
-                <button type="submit" class="site-btn">Subscribe</button>
-            </form>
-        </div>
-    </div>
+   
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
@@ -93,9 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
-                        <div class="header__humberger">
-                            <i class="fa fa-bars humberger__open"></i>
-                        </div>
+                    
                     </div>
                     <div class="col-lg-8 col-md-10 order-md-2 order-3">
                         <nav class="header__menu">
@@ -119,10 +68,12 @@
         </div>
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-3 col-md-3">
                     <div class="header__btn">
                         <a href="./index.html"><img src="{{ url_for('static', filename='img/logo2.png') }}" alt=""></a>
+                    </div>
+                    <div class="header_register_btn">
+                        <button type="submit" class="site-btn">Add</button>
                     </div>
                 </div>
 
@@ -132,172 +83,6 @@
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="hero__slider owl-carousel">
-            <div class="hero__item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-6 p-0">
-                            <div class="hero__inside__item hero__inside__item--wide set-bg"
-                                data-setbg="img/hero/hero-1.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h4>Vegan White Peach Mug Cobbler With CardamomVegan<br /> White Peach Mug
-                                            Cobbler With Cardamom</h4>
-                                        <ul class="widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6  p-0">
-                            <div class="hero__inside__item hero__inside__item--small set-bg"
-                                data-setbg="img/hero/hero-2.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>How to Make a Milkshake With Any <br />Ice Cream, Any Toppings...</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="hero__inside__item hero__inside__item--small set-bg"
-                                data-setbg="img/hero/hero-3.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>Vintage Copper Preserve Pan with <br />Brass Handles, Mid 19th Century</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6  p-0">
-                            <div class="hero__inside__item set-bg" data-setbg="img/hero/hero-4.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>Marinated Lentil Salad with Zucch <br />ini and Tomatoes</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__item">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-6 p-0">
-                            <div class="hero__inside__item hero__inside__item--wide set-bg"
-                                data-setbg="img/hero/hero-1.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h4>Vegan White Peach Mug Cobbler With CardamomVegan<br /> White Peach Mug
-                                            Cobbler With Cardamom</h4>
-                                        <ul class="widget">
-                                            <li>by <span>Admin</span></li>
-                                            <li>3 min read</li>
-                                            <li>20 Comment</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 p-0">
-                            <div class="hero__inside__item hero__inside__item--small set-bg"
-                                data-setbg="img/hero/hero-3.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>How to Make a Milkshake With Any <br />Ice Cream, Any Toppings...</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="hero__inside__item hero__inside__item--small set-bg"
-                                data-setbg="img/hero/hero-2.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>Vintage Copper Preserve Pan with <br />Brass Handles, Mid 19th Century</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 p-0">
-                            <div class="hero__inside__item set-bg" data-setbg="img/hero/hero-4.jpg">
-                                <div class="hero__inside__item__text">
-                                    <div class="hero__inside__item--meta">
-                                        <span>08</span>
-                                        <p>Aug</p>
-                                    </div>
-                                    <div class="hero__inside__item--text">
-                                        <ul class="label">
-                                            <li>Vegan</li>
-                                            <li>Desserts</li>
-                                        </ul>
-                                        <h5>Marinated Lentil Salad with Zucch <br />ini and Tomatoes</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
@@ -305,34 +90,58 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
-                        <div class="categories__hover__text">
-                            <h5>Dinner</h5>
-                            <p>28 articles</p>
+                    <div class="categories__post__item">
+                        <div class="categories__post__item__pic small__item set-bg" data-setbg="static/img/categories/categories-post/cp-2.jpg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
+                        </div>
+                        <div class="categories__post__item__text">
+                            <span class="post__label">Recipe</span>
+                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
+                            <ul class="post__widget">
+                                <li>by <span>Admin</span></li>
+                            </ul>
+                            <p>빵맛집 추천</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-2.jpg">
-                        <div class="categories__hover__text">
-                            <h5>Dinner</h5>
-                            <p>28 articles</p>
+                    <div class="categories__post__item">
+                        <div class="categories__post__item__pic small__item set-bg" data-setbg="static/img/categories/categories-post/cp-2.jpg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
+                        </div>
+                        <div class="categories__post__item__text">
+                            <span class="post__label">Recipe</span>
+                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
+                            <ul class="post__widget">
+                                <li>by <span>Admin</span></li>
+                            </ul>
+                            <p>빵맛집 추천</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-3.jpg">
-                        <div class="categories__hover__text">
-                            <h5>Dinner</h5>
-                            <p>28 articles</p>
+                    <div class="categories__post__item">
+                        <div class="categories__post__item__pic small__item set-bg" data-setbg="static/img/categories/categories-post/cp-2.jpg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
+                        </div>
+                        <div class="categories__post__item__text">
+                            <span class="post__label">Recipe</span>
+                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
+                            <ul class="post__widget">
+                                <li>by <span>Admin</span></li>
+                            </ul>
+                            <p>빵맛집 추천</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__item set-bg" data-setbg="img/categories/cat-4.jpg">
-                        <div class="categories__hover__text">
-                            <h5>Dinner</h5>
-                            <p>28 articles</p>
+                    <div class="categories__post__item">
+                        <div class="categories__post__item__pic small__item set-bg" data-setbg="static/img/categories/cat-2.jpg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
+                        </div>
+                        <div class="categories__post__item__text">
+                            <span class="post__label">Recipe</span>
+                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
+                            <ul class="post__widget">
+                                <li>by <span>Admin</span></li>
+                            </ul>
+                            <p>빵맛집 추천</p>
                         </div>
                     </div>
                 </div>
@@ -348,19 +157,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__text">
-                        <div class="footer__logo">
-                            <a href="#"><img src="img/logo.png" alt=""></a>
+                        
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut<br /> labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                            commodo viverra<br /> maecenas accumsan lacus vel facilisis. </p>
-                        <div class="footer__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        </div>
+                        <p> 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</p>
+                        
                     </div>
                     <div class="footer__copyright">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
