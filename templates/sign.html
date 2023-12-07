@@ -57,7 +57,6 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
                             <div class="signin__form__text">
-
                                 <div class="signin__form__signup__social">
                                     <img src="{{ url_for('static', filename='img/logo4.png') }}" />
                                 </div>
@@ -65,8 +64,8 @@
                                 <form method="post" action="{{ url_for('member') }}">
                                     <input type="text" placeholder="User Name*" name="username">
                                     <input type="text" placeholder="ID*" name="id">
-                                    <input type="text" placeholder="Password" name="password">
-                                    <input type="text" placeholder="Confirm Password" name="password_confirmation">
+                                    <input type="password" placeholder="Password" name="password">
+                                    <input type="password" placeholder="Confirm Password" name="password_confirmation">
                                     <label for="sign-agree-check">
                                         I agree to the terms & conditions
                                         <input type="checkbox" id="sign-agree-check">
@@ -80,11 +79,9 @@
                         </div>
                         <div class="tab-pane" id="tabs-2" role="tabpanel">
                             <div class="signin__form__text">
-
                                 <div class="signin__form__signup__social">
                                     <img src="{{ url_for('static', filename='img/logo4.png') }}" />
                                 </div>
-
                                 <form method="post" action="{{ url_for('login') }}" onsubmit="return validate()">
                                     <input type="text" placeholder="ID*" name="id" id="id">
                                     <input type="password" placeholder="Password" name="password" id="password">
@@ -114,8 +111,7 @@
             if (id === '' || password === '') {
                 alert('아이디또는 비밀번호를 입력해주세요')
                 return false
-            }
-
+            } 
             return true
         }
     </script>
