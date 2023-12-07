@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% for element in restarant_list %}
+        <img src="./static/upload/{{element.img}}.jpeg" alt="">
+    {% endfor %}
+    
+    
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        식당 추가
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">당신의 맛집을 공유해주세요!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ url_for('foodie_create')}}" method="post" enctype=multipart/form-data>
+                        <div class="mb-3">
+                            <input type="hidden" name="userid" value="test">
+                            <input type="hidden" name="username" value="Hoon">
+                            <label for="exampleInputEmail1" class="form-label">상호명</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="shopname"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">가게의 이름을 넣어주세요.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">주소</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="address">
+                            <div id="emailHelp" class="form-text">주소를 넣어주세요.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">종류</label>
+                            <label><input class="style" type="radio" name="style" value="한식">한식</label>
+                            <label><input class="style" type="radio" name="style" value="양식">양식</label>
+                            <label><input class="style" type="radio" name="style" value="일식">일식</label>
+                            <label><input class="style" type="radio" name="style" value="동남아">동남아</label>
+                            <label><input class="style" type="radio" name="style" value="기타">기타</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">리뷰</label>
+                            <textarea name="review" cols="54" rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">음식 사진 URL</label>
+                            <input type="file" class="form-control" id="exampleInputPassword1" name="img">
+                        </div>
+                        <button type="submit" class="btn btn-danger ">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form action="{{ url_for('foodie_delete')}}" method="POST">
+        <button type="submit">삭제하기</button>
+    </form>
+
+    {%with messages = get_flashed_messages()%}
+    {%if messages %}
+    <script type="text/javascript">
+        alert("{{messages[-1]}}");
+    </script>
+    {%endif%}
+    {%endwith%}
+
+</body>
+
+</html>
