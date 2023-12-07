@@ -28,7 +28,7 @@ with app.app_context():
 def index():
     restaurant_list = Restaurants.query.all()
 
-    return render_template('restraunt.html', restaurant_list = restaurant_list)
+    return render_template('restruant.html', restaurant_list = restaurant_list)
 
 @app.route('/api/foodie', methods=['POST']) #식당 추가
 def foodie_create():
@@ -48,7 +48,7 @@ def foodie_create():
     db.session.add(restaurant)
     db.session.commit()
     
-    return render_template('restraunt.html')
+    return render_template('restruant.html')
     #return redirect(url_for('index.html'))
 
 @app.route('/api/foodie/', methods=['POST']) 
@@ -67,7 +67,7 @@ def foodie_delete():
     except SQLAlchemyError as e:
         flash("권한이 없습니다.")
 
-    return render_template('restraunt.html')
+    return render_template('restruant.html')
 
 # @app.route('/foodie/<query>')
 # def search(query):
