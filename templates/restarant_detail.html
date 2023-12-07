@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Foodeiblog Template">
+    <meta name="keywords" content="Foodeiblog, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Foodeiblog | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/elegant-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            checkLoginStatus();
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
+                    
+                    </div>
+                    <div class="col-lg-8 col-md-10 order-md-2 order-3">
+                        <nav class="header__menu">
+                            <ul>
+                                <li class="none"><a href="{{ url_for('index') }}">Home</a></li>
+                                <li id="login-signup"><a href="sign.html">LOGIN / SIGN UP</a></li>
+                                <li id="logout" style="display: none;"><a onclick="logout()">LOGOUT</a></li>
+                                <li>{% if user_name %}
+                                    <p class="header__menu_p" style="margin: 0;">환영합니다 {{ user_name }}님</p>
+                                    {% endif %}</li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
+                        <div class="header__search">
+                            <i class="fa fa-search search-switch"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__btn">
+                        <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo2.png') }}" alt=""></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- About Section Begin -->
+    <section class="about spad">
+        <div class="container">
+            <div class="about__text">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb__text">
+                            <h2>나만 아는 소소한 음식점</h2>
+                            <div class="breadcrumb__option">
+                                <a href="#">{{ restarant.style }}</a>
+                                <span>{{ restarant.address }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about__pic__item__large">
+                            <img src="{{ url_for('static', filename='upload/' + restarant.img + '.jpeg') }}" alt="Restarant Image">
+                        </div>
+                        <div class="about__pic">
+                            <div class="about__pic__item">
+                                <img src="img/about/about-2.jpg" alt="">
+                            </div>
+                            <div class="about__pic__item">
+                                <img src="img/about/about-3.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about__right__text" style="display: flex; flex-direction: column;">
+                            <h2 style="display: flex; justify-content: flex-end;">{{ restarant.shopname }}</h2>
+                            <p style="align-content: center;">{{ restarant.review }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- 원본 템플릿에서 푸터 섹션을 포함 -->
+    <!-- 푸터 섹션 코드를 제공된 코드에서 복사해서 붙여넣을 수 있습니다 -->
+
+    <!-- Js 플러그인 -->
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.slicknav.js"></script>
+    <script src="static/js/owl.carousel.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+
+</html>
