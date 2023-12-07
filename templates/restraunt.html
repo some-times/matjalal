@@ -18,7 +18,11 @@
 </head>
 
 <body>
-
+    {% for element in restaurant_list %}
+        <img src="./static/upload/{{element.img}}.jpeg" alt="">
+    {% endfor %}
+    
+    
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
         식당 추가
     </button>
@@ -32,7 +36,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url_for('foodie_create')}}" method="get">
+                    <form action="{{ url_for('foodie_create')}}" method="post" enctype=multipart/form-data>
                         <div class="mb-3">
                             <input type="hidden" name="userid" value="test">
                             <input type="hidden" name="username" value="Hoon">
@@ -60,7 +64,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">음식 사진 URL</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" name="img">
+                            <input type="file" class="form-control" id="exampleInputPassword1" name="img">
                         </div>
                         <button type="submit" class="btn btn-danger ">Submit</button>
                     </form>

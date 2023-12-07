@@ -7,7 +7,7 @@
 </head>
 <body>
     {% if user_name %}
-        <p>Welcom back, {{}}</p>
+        <p>Welcom back, {{ user_name }}</p>
     <h1>Login Page</h1>
     <form method="POST" action="{{ url_for('login') }}">
         <label for="id">아이디:</label>
