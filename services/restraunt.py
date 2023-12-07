@@ -83,11 +83,6 @@ def foodie_delete():
 
     return render_template('restruant.html')
 
-# @app.route('/foodie/<query>')
-# def search(query):
-#     restaurant_list = Restaurants.query.filter_by((shopname = query) | (style = query)).all()
-
-#     return render_template('index.html', restaurant_list = restaurant_list)
 
 if __name__ == '__main__':
     app.run()

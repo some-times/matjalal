@@ -48,7 +48,6 @@ def index_back():
 # 메인 페이지
 @app.route('/', methods = ['GET'])
 def index():
-
     username = None
     if 'user_id' in session:
         user = Users.query.get(session['user_id'])
