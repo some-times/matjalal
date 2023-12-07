@@ -99,7 +99,7 @@
                         </div>
                         <div class="categories__post__item__text">
                             <span class="post__label">{{restarant.style}}</span>
-                            <h3><a href="#">{{restarant.shopname}}</a></h3>
+                            <h3><a href="{{ url_for('restarant_detail', restarant_id=restarant.id) }}">{{restarant.shopname}}</a></h3>
                             <p>{{restarant.address}}</p>
                             <ul class="post__widget">
                                 <li>by <span>{{restarant.username}}</span></li>
