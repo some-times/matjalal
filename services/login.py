@@ -4,7 +4,7 @@
 1. render_template : html파일을 가져와서 보여준다
 '''
 from flask import Flask, flash, render_template, request, redirect, url_for, session, jsonify
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_bcrypt import generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 
@@ -117,15 +117,15 @@ def member():
             return redirect(url_for('sign'))
 
         # 비밀번호를 해시하여 데이터베이스에 저장
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password)
         new_user = Users(userid=id, username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
         flash('회원가입 성공! 로그인해주세요.', 'success')
-        return redirect(url_for('sign'))
+        return redirect(url_for('index'))
 
-    return render_template('sign.html')
+    return render_template('index')
 
 if __name__ == '__main__':
     app.run(debug=True) 
