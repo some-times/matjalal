@@ -549,7 +549,9 @@ ol {
 	padding: 57px 0 56px;
 	text-align: center;
 }
-
+.header_register_btn{
+	text-align: center;
+}
 .header__logo {
 	padding: 50px 0 40px;
 	text-align: center;
@@ -1220,8 +1222,9 @@ ol {
 
 .categories__post__item__text p {
 	font-size: 14px;
-	line-height: 24px;
-	margin-bottom: 21px;
+	line-height: 14px;
+	display: inline-block;
+	margin: 0;
 }
 
 .categories__post__item__small {
@@ -2659,8 +2662,41 @@ ol {
 
 .contact__form form button {
 	width: 100%;
+	background-color: #f4952f;
 }
 
+.filebox{
+	display: flex;
+	justify-content: space-between;
+}
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 20px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #777777;
+}
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #f4a54f;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+	margin-bottom: 20px;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
 /*---------------------
   Sign In
 -----------------------*/

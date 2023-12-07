@@ -16,7 +16,9 @@
     --------------------*/
     $(window).on('load', function () {
         $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow");
+
+        $("#preloder").delay(100).fadeOut("slow");
+
     });
 
     /*------------------
@@ -74,5 +76,9 @@
         autoHeight: false,
         autoplay: true
     });
-
 })(jQuery);
+
+$("#file").on('change',function(){
+    var fileName = $("#file").val().split('.')[0];
+    $(".upload-name").val(fileName);
+});
