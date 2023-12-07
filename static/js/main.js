@@ -18,7 +18,7 @@
         $(".loader").fadeOut();
 
         $("#preloder").delay(100).fadeOut("slow");
->>>>>>> main
+
     });
 
     /*------------------
@@ -76,8 +76,6 @@
         autoHeight: false,
         autoplay: true
     });
-})(jQuery);
-=======
 })(jQuery);
 
 $("#file").on('change',function(){
