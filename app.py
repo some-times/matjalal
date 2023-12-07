@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 from sqlalchemy.exc import SQLAlchemyError
-
+from datetime import datetime
 
 import os
 
@@ -33,7 +33,7 @@ class Restarants(db.Model):
     shopname = db.Column(db.String(50), nullable=False)
     address = db.Column(db.String(200), nullable=False)
     style = db.Column(db.String(20), nullable=False)
-    review = db.Column(db.String(500), nullable=False)
+    review = db.Column(db.Text, nullable=False)
     img = db.Column(db.String(1000), nullable=False)
     
 with app.app_context():
@@ -56,25 +56,38 @@ def search():
 
 @app.route('/restarant.html', methods=['POST', 'GET']) # 식당 추가 페이지 이동
 def foodie_move():
-    return render_template('restarant-1.html')
+    if 'user_id' in session:      
+        return render_template('restarant-1.html')
+    
+    alert_msg = "로그인이 필요합니다."
+
+    return render_template('sign.html', msg = alert_msg)
+            
+#파일명을 겹치지 않기 위한 함수
+def generate_unique_filename(filename):
+    timestamp = datetime.now().strftime('%Y%m%d%H%M%S%f')
+    _, extension = os.path.splitext(filename)
+    unique_filename = timestamp + extension
+    return unique_filename
 
 @app.route('/api/foodie', methods=['POST']) #식당 추가
 def foodie_create():
     try: 
-        userid_receive = request.form['userid']
-        username_receive = request.form['username']
+        userid_receive = session['user_id']
+        username_receive = 'Test'
         shopname_receive = request.form['shopname']
         address_receive = request.form['address']
         style_receive = request.form['style']
         review_receive = request.form['review']
         uploaded_file = request.files['img']
-        img_name = uploaded_file.filename
-        uploaded_file.save("./static/upload/"+img_name+".jpeg")
+        filename = uploaded_file.filename
+        unique_filename = generate_unique_filename(filename)
+        uploaded_file.save("./static/upload/"+unique_filename+".jpeg")
     except SQLAlchemyError as e:
         flash("오류가 발생했습니다.")
 
     restarant = Restarants(userid = userid_receive, username = username_receive, shopname = shopname_receive, 
-                            address =  address_receive, style  = style_receive, review = review_receive, img = img_name)
+                            address =  address_receive, style  = style_receive, review = review_receive, img = unique_filename)
     db.session.add(restarant)
     db.session.commit()
     

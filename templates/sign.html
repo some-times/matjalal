@@ -34,6 +34,11 @@
 </head>
 
 <body class="fixed-position">
+    {% if msg %}
+    <script>
+        alert('{{ msg }}');
+    </script>
+    {% endif %}
     <div class="signin">
         <div class="signin__warp">
             <div class="signin__content">
@@ -111,10 +116,11 @@
             if (id === '' || password === '') {
                 alert('아이디또는 비밀번호를 입력해주세요')
                 return false
-            } 
+            }
             return true
         }
     </script>
+    
 
     <!-- Js Plugins -->
     <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>

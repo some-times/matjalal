@@ -125,29 +125,27 @@
                 <div class="row">
                 </div>
                 <div class="row">
-                        <div class="contact__form">
-                            <div class="contact__form__title d-flex justify-content-center align-items-center flex-column">
-                                <h2>음식점 정보 입력란</h2>
-                                <p>상호명, 주소, 종류, 설명 및 평가를 입력해 주세요.</p>
-                            </div>
-                            <form action="{{ url_for('foodie_create')}}" method="post" enctype=multipart/form-data>
-                                <input type="hidden" name="userid" value="test">
-                                <input type="hidden" name="username" value="Hoon">
-                                <input type="text" name="shopname" placeholder="상호명">
-                                <input type="text" name="address" placeholder="주소">
-                                <input type="text" name="style" placeholder="종류 ex&#41 일식, 양식, 한식">
-                                <div class="filebox">
-                                    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
-                                    <label for="file">파일찾기</label> 
-                                    <input type="file" id="file" name="img">
-                                </div>
-                                <textarea name="review" placeholder="설명 및 평가"></textarea>
-                                <button type="submit" class="site-btn">등록</button>
-                            </form>
+                    <div class="contact__form">
+                        <div class="contact__form__title d-flex justify-content-center align-items-center flex-column">
+                            <h2>음식점 정보 입력란</h2>
+                            <p>상호명, 주소, 종류, 설명 및 평가를 입력해 주세요.</p>
                         </div>
+                        <form action="{{ url_for('foodie_create')}}" method="post" enctype=multipart/form-data>
+                            <input type="text" name="shopname" placeholder="상호명">
+                            <input type="text" name="address" placeholder="주소">
+                            <input type="text" name="style" placeholder="종류 ex&#41 일식, 양식, 한식">
+                            <div class="filebox">
+                                <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                                <label for="file">파일찾기</label>
+                                <input type="file" id="file" name="img">
+                            </div>
+                            <textarea name="review" placeholder="설명 및 평가"></textarea>
+                            <button type="submit" class="site-btn">등록</button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <!-- Contact Section End -->
@@ -162,7 +160,7 @@
         </div>
     </div>
     <!-- Search End -->
-
+    
     <!-- Js Plugins -->
     <script src="static/js/jquery-3.3.1.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
