@@ -44,9 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
-                        <div class="header__humberger">
-                            
-                        </div>
+                    
                     </div>
                     <div class="col-lg-8 col-md-10 order-md-2 order-3">
                         <nav class="header__menu">
@@ -75,7 +73,7 @@
                         <a href="./index.html"><img src="{{ url_for('static', filename='img/logo2.png') }}" alt=""></a>
                     </div>
                     <div class="header_register_btn">
-                        <button type="submit" class="site-btn">Add</button>
+                        <a href="{{url_for('foodie_move')}}"><button type="submit" class="site-btn">Add</button></a>
                     </div>
                 </div>
 
@@ -91,62 +89,22 @@
     <section class="categories spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__post__item">
-                        <div class="categories__post__item__pic small__item set-bg" data-setbg="static/img/categories/categories-post/cp-2.jpg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
+                {% for restaurant in restaurant_list %}
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="categories__post__item">
+                            <div class="categories__post__item__pic small__item set-bg" data-setbg="static/upload/{{restaurant.img}}.jpeg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
+                            </div>
+                            <div class="categories__post__item__text">
+                                <span class="post__label">{{restaurant.style}}</span>
+                                <h3><a href="#">{{restaurant.shopname}}</a></h3>
+                                <p>{{restaurant.address}}</p>
+                                <ul class="post__widget">
+                                    <li>by <span>{{restaurant.userid}}</span></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="categories__post__item__text">
-                            <span class="post__label">Recipe</span>
-                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
-                            <ul class="post__widget">
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p>빵맛집 추천</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__post__item">
-                        <div class="categories__post__item__pic small__item set-bg" data-setbg="static/img/categories/categories-post/cp-2.jpg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
-                        </div>
-                        <div class="categories__post__item__text">
-                            <span class="post__label">Recipe</span>
-                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
-                            <ul class="post__widget">
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p>빵맛집 추천</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__post__item">
-                        <div class="categories__post__item__pic small__item set-bg" data-setbg="static/img/categories/categories-post/cp-2.jpg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
-                        </div>
-                        <div class="categories__post__item__text">
-                            <span class="post__label">Recipe</span>
-                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
-                            <ul class="post__widget">
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p>빵맛집 추천</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="categories__post__item">
-                        <div class="categories__post__item__pic small__item set-bg" data-setbg="static/img/categories/cat-2.jpg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
-                        </div>
-                        <div class="categories__post__item__text">
-                            <span class="post__label">Recipe</span>
-                            <h3><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h3>
-                            <ul class="post__widget">
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p>빵맛집 추천</p>
-                        </div>
-                    </div>
-                </div>
+                    </div>                     
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -182,7 +140,7 @@
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch">+</div>
-            <form class="search-model-form">
+            <form class="search-model-form" method="get" >
                 <input type="text" id="search-input" placeholder="Search here.....">
             </form>
         </div>

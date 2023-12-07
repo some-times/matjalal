@@ -74,7 +74,6 @@
         autoHeight: false,
         autoplay: true
     });
-
 })(jQuery);
 
 $("#file").on('change',function(){
