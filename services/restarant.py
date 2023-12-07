@@ -11,7 +11,7 @@ app.config["SECRET_KEY"] = "ABCD"
 
 db = SQLAlchemy(app)
 
-class Restaurants(db.Model):
+class Restarants(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userid = db.Column(db.String(20), nullable=False)
     username = db.Column(db.String(20), nullable=False)
@@ -24,15 +24,23 @@ class Restaurants(db.Model):
 with app.app_context():
     db.create_all()
 
-@app.route('/') #리스트 출력
+@app.route('/') # main, 모든 리스트 출력
 def index():
-    restaurant_list = Restaurants.query.all()
+    restarant_list = Restarants.query.all()
 
-    return render_template('main.html', restaurant_list = restaurant_list)
+    return render_template('main.html', restaurant_list = restarant_list)
 
-@app.route('/restraunt.html', methods=['POST', 'GET'])
+@app.route('/search', methods=['GET']) # 검색
+def search():
+    query = request.args.get('query')
+    restarant_list = Restarants.query.filter(Restarants.shopname.like(f'%{query}%') |
+                                                Restarants.style.like(f'%{query}%')).all()
+
+    return render_template('main.html', restarant_list = restarant_list)
+
+@app.route('/restarant.html', methods=['POST', 'GET']) # 식당 추가 페이지 이동
 def foodie_move():
-    return render_template('restraunt-1.html')
+    return render_template('restarant-1.html')
 
 @app.route('/api/foodie', methods=['POST']) #식당 추가
 def foodie_create():
@@ -49,9 +57,9 @@ def foodie_create():
     except SQLAlchemyError as e:
         flash("오류가 발생했습니다.")
 
-    restaurant = Restaurants(userid = userid_receive, username = username_receive, shopname = shopname_receive, 
+    restarant = Restarants(userid = userid_receive, username = username_receive, shopname = shopname_receive, 
                             address =  address_receive, style  = style_receive, review = review_receive, img = img_name)
-    db.session.add(restaurant)
+    db.session.add(restarant)
     db.session.commit()
     
     return redirect(url_for('index'))
@@ -65,21 +73,16 @@ def foodie_delete():
     userid = 'test'
 
     try:
-        delete_restraurant = Restaurants.query.filter_by(userid = userid, id = id).first() 
-        db.session.delete(delete_restraurant)
+        delete_restarant = Restarants.query.filter_by(userid = userid, id = id).first() 
+        db.session.delete(delete_restarant)
         db.session.commit()
         flash("삭제되었습니다 .")
 
     except SQLAlchemyError as e:
         flash("권한이 없습니다.")
 
-    return render_template('restruant.html')
+    return render_template('restarant.html')
 
-# @app.route('/foodie/<query>')
-# def search(query):
-#     restaurant_list = Restaurants.query.filter_by((shopname = query) | (style = query)).all()
-
-#     return render_template('index.html', restaurant_list = restaurant_list)
 
 if __name__ == '__main__':
     app.run()

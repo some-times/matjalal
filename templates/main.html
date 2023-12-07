@@ -35,7 +35,7 @@
     </div>
 
     <!-- Humberger Begin -->
-
+    <div class="humberger__menu__overlay"></div>
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
@@ -89,17 +89,17 @@
     <section class="categories spad">
         <div class="container">
             <div class="row">
-                {% for restaurant in restaurant_list %}
+                {% for restarant in restarant_list %}
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="categories__post__item">
-                            <div class="categories__post__item__pic small__item set-bg" data-setbg="static/upload/{{restaurant.img}}.jpeg" style="background-image: url(&quot;img/categories/categories-post/cp-2.jpg&quot;);">   
+                            <div class="categories__post__item__pic small__item set-bg" data-setbg="static/upload/{{restarant.img}}.jpeg">   
                             </div>
                             <div class="categories__post__item__text">
-                                <span class="post__label">{{restaurant.style}}</span>
-                                <h3><a href="#">{{restaurant.shopname}}</a></h3>
-                                <p>{{restaurant.address}}</p>
+                                <span class="post__label">{{restarant.style}}</span>
+                                <h3><a href="#">{{restarant.shopname}}</a></h3>
+                                <p>{{restarant.address}}</p>
                                 <ul class="post__widget">
-                                    <li>by <span>{{restaurant.userid}}</span></li>
+                                    <li>by <span>{{restarant.userid}}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -119,7 +119,6 @@
                     <div class="footer__text">
                         
                         </div>
-                        <p> 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</p>
                         
                     </div>
                     <div class="footer__copyright">
@@ -141,8 +140,8 @@
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch">+</div>
-            <form class="search-model-form" method="get" >
-                <input type="text" id="search-input" placeholder="Search here.....">
+            <form class="search-model-form" action="{{ url_for('search')}}" method="get" >
+                <input type="text" id="search-input" placeholder="Search" name="query">
             </form>
         </div>
     </div>
