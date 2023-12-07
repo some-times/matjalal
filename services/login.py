@@ -44,6 +44,7 @@ def sign():
 @app.route('/main.html', methods = ['GET', 'POST'])
 def index_back():
     return render_template('main.html')
+
 # 메인 페이지
 @app.route('/', methods = ['GET'])
 def index():
@@ -62,9 +63,9 @@ def login():
     if request.method == 'POST':
         id = request.form['id']
         password = request.form['password']
-        user = Users.query.filter_by(userid=id, password=password).first()
+        user = Users.query.filter_by(userid=id).first()
 
-        if user:
+        if user and check_password_hash(user.password, password):
             session['user_id'] = user.userid
             session.permanent = True
             flash('로그인 성공', 'success')
@@ -72,7 +73,7 @@ def login():
         else:
             flash('로그인 실패. 아이디 또는 비밀번호가 올바르지 않습니다.')
 
-    return render_template('main.html')        
+    return render_template('main.html')
 
 # 세션 체크
 @app.route('/api/check_login_status', methods=['GET'])
@@ -117,15 +118,19 @@ def member():
             return redirect(url_for('sign'))
 
         # 비밀번호를 해시하여 데이터베이스에 저장
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
         new_user = Users(userid=id, username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
         flash('회원가입 성공! 로그인해주세요.', 'success')
-        return redirect(url_for('sign'))
+        return redirect(url_for('index'))
 
-    return render_template('sign.html')
+    return render_template('index')
+
+@app.route('/restraunt.html', methods=['POST', 'GET'])
+def foodie_move():
+    return render_template('restraunt-1.html')
 
 if __name__ == '__main__':
     app.run(debug=True) 

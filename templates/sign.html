@@ -65,8 +65,8 @@
                                 <form method="post" action="{{ url_for('member') }}">
                                     <input type="text" placeholder="User Name*" name="username">
                                     <input type="text" placeholder="ID*" name="id">
-                                    <input type="text" placeholder="Password" name="password">
-                                    <input type="text" placeholder="Confirm Password" name="password_confirmation">
+                                    <input type="password" placeholder="Password" name="password">
+                                    <input type="password" placeholder="Confirm Password" name="password_confirmation">
                                     <label for="sign-agree-check">
                                         I agree to the terms & conditions
                                         <input type="checkbox" id="sign-agree-check">
@@ -114,7 +114,7 @@
             if (id === '' || password === '') {
                 alert('아이디또는 비밀번호를 입력해주세요')
                 return false
-            }
+            } 
 
             return true
         }

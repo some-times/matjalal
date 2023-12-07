@@ -24,13 +24,21 @@ class Restaurants(db.Model):
 with app.app_context():
     db.create_all()
 
-@app.route('/') #리스트 출력
+@app.route('/') # main, 모든 리스트 출력
 def index():
     restaurant_list = Restaurants.query.all()
 
     return render_template('main.html', restaurant_list = restaurant_list)
 
-@app.route('/restraunt.html', methods=['POST', 'GET'])
+@app.route('/search', methods=['GET']) # 검색
+def search():
+    query = request.args.get('query')
+    restaurant_list = Restaurants.query.filter(Restaurants.shopname.like(f'%{query}%') |
+                                                Restaurants.style.like(f'%{query}%')).all()
+
+    return render_template('main.html', restaurant_list = restaurant_list)
+
+@app.route('/restraunt.html', methods=['POST', 'GET']) # 식당 추가 페이지 이동
 def foodie_move():
     return render_template('restraunt-1.html')
 
