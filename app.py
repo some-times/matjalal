@@ -193,5 +193,12 @@ def member():
 
     return render_template('index')
 
+# 상세페이지 이동
+@app.route('/restarant/<int:restarant_id>', methods=['GET'])
+def restarant_detail(restarant_id):
+    # restarant_id에 해당하는 레스토랑 정보를 데이터베이스에서 가져와서 상세 페이지에 전달
+    restarant = Restarants.query.get_or_404(restarant_id)
+    return render_template('restarant_detail.html', restarant=restarant)
+
 if __name__ == '__main__':
     app.run(debug=True)
