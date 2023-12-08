@@ -34,6 +34,11 @@
 </head>
 
 <body class="fixed-position">
+    {% if msg %}
+    <script>
+        alert('{{ msg }}');
+    </script>
+    {% endif %}
     <div class="signin">
         <div class="signin__warp">
             <div class="signin__content">
@@ -66,13 +71,8 @@
                                     <input type="text" placeholder="ID*" name="id" id="userId" onblur="checkDuplicateId()">
                                     <input type="password" placeholder="Password" name="password" id="userPassword">
                                     <input type="password" placeholder="Confirm Password" name="password_confirmation" id="confirmPassword">
-                                    <label for="sign-agree-check">
-                                        I agree to the terms & conditions
-                                        <input type="checkbox" id="sign-agree-check">
-                                        <span class="checkmark"></span>
-                                    </label>
                                     <button type="submit" class="site-btn">Sign Up</button>
-                                    <button class="site-btn" type="button"><a href="main.html"
+                                    <button class="site-btn" type="button"><a href="{{url_for('index')}}"
                                             style="display: inline-block; color: #fff;">Back</a></button>
                                 </form>
                             </div>
@@ -87,7 +87,7 @@
                                     <input type="password" placeholder="Password" name="password" id="password">
                                     <div id="passwordMismatch" style="color: red; display: none;">아이디 또는 비밀번호가 올바르지 않습니다.</div>    
                                     <button type="submit" class="site-btn">Sign In</button>
-                                    <button class="site-btn" type="button"><a href="main.html"
+                                    <button class="site-btn" type="button"><a href="{{url_for('index')}}"
                                             style="display: inline-block; color: #fff;">Back</a></button>
                                 </form>
                             </div>

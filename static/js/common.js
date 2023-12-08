@@ -1,4 +1,3 @@
-
 function checkLoginStatus() {
     fetch('/api/check_login_status', {
         method: 'GET',
@@ -24,6 +23,7 @@ function checkLoginStatus() {
 
 // 로그인 유효성 검사
 async function validateLogin() {
+    event.preventDefault()
 
     let id = document.getElementById('id').value.trim()
     let password = document.getElementById('password').value.trim()
@@ -33,27 +33,33 @@ async function validateLogin() {
         return false
     }
 
-    const response = await fetch('/api/check_password', {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            'id': id,
-            'password': password,
-        }),
-    })
+    try {
+        const response = await fetch('/api/check_password', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'id': id,
+                'password': password,
+            }),
+        })
+        
+        const result = await response.json()
     
-    const result = await response.json()
-
-    if(!result.isValid) {
-        document.getElementById('passwordMismatch').innerText = '아이디 또는 비밀번호가 올바르지 않습니다.'
-        document.getElementById('passwordMismatch').style.display = 'block'
+        if(!result.isValid) {
+            document.getElementById('passwordMismatch').innerText = '아이디 또는 비밀번호가 올바르지 않습니다.'
+            document.getElementById('passwordMismatch').style.display = 'block'
+            return false
+        } else {
+            document.getElementById('passwordMismatch').style.display = 'none'
+            document.getElementById('loginForm').submit()
+            return true
+        } 
+    } catch (error) {
+        console.log('로그인 검사 오류 : ', error)
         return false
-    } else {
-        document.getElementById('passwordMismatch').style.display = 'none'
-        return true
-    }
+    } 
     
 }
 
@@ -91,7 +97,7 @@ function validateJoin() {
     return isValid
 }
 
-// 아이디 동일성 체크
+// 아이디 동일성 검사
 function checkDuplicateId() {
     
     let userId = document.getElementById('userId').value
@@ -116,5 +122,35 @@ function checkDuplicateId() {
     })
 }
 
-// 비밀번호 동일성 체크
+// 음식점 등록 유효성 검사
+function validateRegist() {
+    let shopname = document.getElementById('shopname')
+    let address = document.getElementById('address')
+    let style = document.getElementById('style')
+    let review = document.getElementById('review')
+    let isValid = true
 
+    if (shopname.value == "") {
+        alert("가게이름을 작성해주세요.")
+        shopname.focus()
+        return false
+    }
+
+    if (address.value == "") {
+        alert("주소를 입력해주세요.")
+        address.focus()
+        return false
+    }
+
+    if (style.value == "") {
+        alert("종류를 입력해주세요.")
+        return false
+    }
+
+    if (review.value == "") {
+        alert("설명 및 평가를 입력해주세요.")
+        return false
+    }
+
+    return isValid
+}

@@ -32,7 +32,7 @@
 
 html,
 body {
-	height: 100%;
+	height: 100vh;
 	font-family: "Nunito Sans", sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -975,6 +975,10 @@ ol {
 	padding-top: 90px;
 }
 
+.categories .row{
+	justify-content: flex-start;
+}
+
 .categories.categories-grid {
 	padding-top: 0;
 }
@@ -1371,10 +1375,17 @@ ol {
 .breadcrumb__text h2 {
 	color: #000000;
 	margin-bottom: 5px;
+	border-bottom: solid 1px #999;
 }
 
 .breadcrumb__text h2 span {
 	color: #f4952f;
+}
+
+.breadcrumb__text .breadcrumb__option{
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 5px;
 }
 
 .breadcrumb__text .breadcrumb__option a {
@@ -1393,8 +1404,27 @@ ol {
 }
 
 .breadcrumb__text .breadcrumb__option span {
+	display: inline-block;
 	font-size: 16px;
 	color: #888888;
+}
+
+.restrant-review{
+	border: none;
+	resize: none;
+	padding: 5px;
+	background-color: #fff;
+}
+.delete-btn-wrap{
+	text-align: center;
+}
+.delete-btn{
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #f4952f;
+	color: white;
+	font-size: 20px;
 }
 
 /*---------------------
@@ -2486,7 +2516,7 @@ ol {
 -----------------------*/
 
 .about {
-	padding-bottom: 90px;
+	padding-bottom: 40px;
 	padding-top: 0;
 }
 
@@ -2500,6 +2530,7 @@ ol {
 
 .about__pic__item__large img {
 	min-width: 100%;
+	height: 500px;
 }
 
 .about__pic__item {
@@ -3241,6 +3272,8 @@ ol {
 		padding: 0 0 15px;
 	}
 
+	
+
 	.sidebar__item {
 		padding-top: 50px;
 	}
@@ -3387,5 +3420,9 @@ ol {
 	.text-404 h1 {
 		font-size: 100px;
 		line-height: 100px;
+	}
+	.logo99 {
+		height: 50px;
+		margin-bottom: 20px;
 	}
 }
